@@ -23,4 +23,5 @@ class Add_Book:
         session.add(Books(book_name=book_name, autor=autor))
         session.commit()
 
-book = Add_Book()
+
+user = Add_Reader()
