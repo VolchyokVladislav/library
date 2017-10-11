@@ -12,7 +12,7 @@ class Readers(Base):
     fullname = Column(String(20))
     phone_number = Column(String(15))
     read_now = Column(BOOLEAN, default=False)
-    children = relationship('Read_Book', remote_side='Read_Book.reader_id')
+    read_book = relationship('Read_Book')
 
 class Books(Base):
     __tablename__ = 'books'
@@ -21,7 +21,7 @@ class Books(Base):
     book_name = Column(String(20))
     autor = Column(String(20))
     in_library = Column(BOOLEAN, default=True)
-    ch1 = relationship('Read_Book', remote_side='Read_Book.book_id')
+    ch1 = relationship('Read_Book')
 
 class Read_Book(Base):
     __tablename__ = 'read_book'
@@ -36,7 +36,6 @@ class Stop_list(Base):
 
     reader_id = Column(Integer, primary_key=True, autoincrement=True)
     minus = Column(Integer)
-
 
 engine = create_engine('mysql+mysqldb://root:adgjl\'@localhost:3306/library', echo=True)
 Base.metadata.create_all(engine)

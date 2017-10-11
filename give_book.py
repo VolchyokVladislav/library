@@ -4,9 +4,9 @@ from sqlalchemy.orm import sessionmaker
 
 class Give_Book:
 
-    def _init__(self):
-        id = input('reader_id: ')
-        book = input('book_id: ')
+    def __init__(self):
+        id = input("reader_id: ")
+        book = input("book_id: ")
         Session = sessionmaker(bind=engine)
         session = Session()
         if id in session.query(Readers.reader_id) and book in session.query(Books.book_id):
@@ -15,4 +15,4 @@ class Give_Book:
         else:
             print('you are not in the list of users')
 
-read = Give_Book()
+reasdV = Give_Book()
