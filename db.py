@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, create_engine, TIMESTAMP, ForeignKey, BOOLEAN
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -26,17 +26,17 @@ class Books(Base):
 class Read_Book(Base):
     __tablename__ = 'read_book'
 
+    id = Column(Integer, primary_key=True, autoincrement=True)
     reader_id = Column(Integer, ForeignKey('readers.reader_id'))
     book_id = Column(Integer, ForeignKey('books.book_id'))
-    timestamp = Column(TIMESTAMP, primary_key=True, default=0)
-    ch2 = relationship('Stop_list', remote_side='Stop_list.timestamp')
+    timestamp = Column(TIMESTAMP, default=0)
 
 class Stop_list(Base):
     __tablename__ = 'stop_list'
 
     reader_id = Column(Integer, primary_key=True, autoincrement=True)
-    timestamp = Column(TIMESTAMP, ForeignKey('read_book.timestamp'))
     minus = Column(Integer)
+
 
 engine = create_engine('mysql+mysqldb://root:adgjl\'@localhost:3306/library', echo=True)
 Base.metadata.create_all(engine)

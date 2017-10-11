@@ -23,5 +23,14 @@ class Add_Book:
         session.add(Books(book_name=book_name, autor=autor))
         session.commit()
 
-
-user = Add_Reader()
+Session = sessionmaker(bind=engine)
+session = Session()
+user = Readers(name='Vika', fullname='Vol', phone_number='1111')
+session.add(user)
+user.phone_number = '222222'
+session.commit()
+#print(user.reader_id)
+#our_user = session.query(Readers).filter_by(name='Vlad').first()
+#print(dict(our_user))
+for instance in session.query(Readers).order_by(Readers.reader_id):
+    print(instance.reader_id, instance.fullname)

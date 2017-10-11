@@ -9,8 +9,10 @@ class Give_Book:
         book = input('book_id: ')
         Session = sessionmaker(bind=engine)
         session = Session()
-        session.add(Read_Book(reader_id=id, book_id=book))
-        session.commit()
-
+        if id in session.query(Readers.reader_id) and book in session.query(Books.book_id):
+            session.add(Read_Book(reader_id=id, book_id=book))
+            session.commit()
+        else:
+            print('you are not in the list of users')
 
 read = Give_Book()
