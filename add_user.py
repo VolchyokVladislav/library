@@ -1,4 +1,4 @@
-from db import Readers, Books, engine
+from db import Readers, Books, Read_Book, engine
 from sqlalchemy.orm import sessionmaker
 
 
@@ -23,8 +23,11 @@ class Add_Book:
         session.add(Books(book_name=book_name, autor=autor))
         session.commit()
 
-#Session = sessionmaker(bind=engine)
-#session = Session()
+Session = sessionmaker(bind=engine)
+session = Session()
+f = session.query(Readers).join(Read_Book).filter(Read_Book.reader_id==1).all()
+print(f)
+
 #user = Readers(name='Vika', fullname='Vol', phone_number='1111')
 #session.add(user)
 #user.phone_number = '222222'

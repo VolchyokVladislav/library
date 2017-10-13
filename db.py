@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, create_engine, TIMESTAMP, ForeignKey, BOOLEAN
+from sqlalchemy import Column, Integer, String, create_engine, TIMESTAMP, ForeignKey, BOOLEAN, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -29,7 +29,7 @@ class Read_Book(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     reader_id = Column(Integer, ForeignKey('readers.reader_id'))
     book_id = Column(Integer, ForeignKey('books.book_id'))
-    timestamp = Column(TIMESTAMP, default=0)
+    timestamp = Column(DateTime)
 
 class Stop_list(Base):
     __tablename__ = 'stop_list'
